@@ -7,26 +7,25 @@ const phoneRegExp = /^\d{3}-\d{2}-\d{2}$/;
 const ContactSchema = Yup.object().shape({
     name: Yup.string()
         .trim()
-        .min(3, "Too Short!")
-        .max(50, "Too Long!")
-        .required("This field is required!"),
+        .min(3, 'Too Short!')
+        .max(50, 'Too Long!')
+        .required('This field is required!'),
     number: Yup.string()
-        .matches(phoneRegExp, "Phone number should be 'xxx-xx-xx'")
-        .required("This field is required!"),
+        .matches(phoneRegExp, 'Phone number should be "xxx-xx-xx"')
+        .required('This field is required!'),
 });
 
 export default function ContactForm({ onAdd }) {
     const nameId = useId();
     const numberId = useId();
 
-    const handleSubmit = (values, actions) => {
+    const handleSubmit = (values, actions) => { 
         onAdd(values);
         actions.resetForm();
     };
-
+    
     return (
         <Formik initialValues={{
-            id: '',
             name: '',
             number: '',
         }}
